@@ -1,5 +1,5 @@
-#THis is a Python3 script to give a word choice check of documents.
-#Every word in the (*.txt or *.doc) file is put into a list of tuples (String word, int count)
+#This is a Python3 script to for checking the word choice of documents of text.
+#Every word in a (*.txt or *.doc) file is put into a list of tuples (String word, int count)
 #Every word in a paragraph is put into a list of tuples (String word, int count)
 #Every word in a sentence is put into a list of tuples (String word, int count)
 #Every word is then scored accordingly in a dictionary:
@@ -98,15 +98,7 @@ def fileToString(directory, fileName, extension):
             return False
         else:
             return True
-    #def isAscii(s):
-    #    import string
-    #    for c in s:
-    #        if c not in string.ascii_letters and c != "\n" and c != "\r\n" and c != " ":
-    #            print("NOT ASCII or return!")
-    #            return False
-    #        else:
-    #            print(c)
-    #    return True
+
     ############
     ### MAIN ###
     ############
@@ -155,16 +147,9 @@ def updateScores(l, d, bonus):#can this be pass by ref? also may be good idea to
             else:
                 alreadyUsedElts.append(elt)
                 d[elt] += 1
-            #print(d)
-            #input(elt + " " + str(d[elt]) + ".  Bonus = " + str(bonus))
         else:
             alreadyUsedElts.append(elt)
             d[elt] = 1
-            #input(elt + " " + str(d[elt]) + ".  Bonus = " + str(bonus))
-            #print(d)
-            #input()
-    #print(sorted(d), "\n\n", d)
-    #input()
     return d
 
 
@@ -174,27 +159,19 @@ def delimitStringToList(s):
     l.clear()
     tmpStr = ""
     for char in s:
-        #print ("char" + char + ";    tmpStr = " + tmpStr)
         if isRunonPunctuation(char) or isMiscPunctuation(char) or char == " ":
             if tmpStr != "":
                 l.append(tmpStr)
-            #print("1appending: \'" + tmpStr + "\'")
-            #print("+__________________")
             tmpStr = ""
         elif char == "\n":
             if tmpStr != "":
                 l.append(tmpStr)
-            #print("2appending: \'" + tmpStr + "\'")
             l.append(char)
-            #print("2appending: \'" + char + "\'")
-            #print("+__________________")
             tmpStr = ""
         else:
             tmpStr += char
     if tmpStr != "":
         l.append(tmpStr)
-    #print("3appending: \'" + tmpStr + "\'")
-    #print("+__________________")
     return l
 
 def isEndingPunctuation(c):
@@ -202,7 +179,7 @@ def isEndingPunctuation(c):
 def isRunonPunctuation(c):
     return c == "," or c == "\t" or c == ':'
 def isMiscPunctuation(c):
-    return c == "\"" or c == "(" or c == ")"# or c == "\'"
+    return c == "\"" or c == "(" or c == ")"
 def isPunctuation(c):
     return isEndingPunctuation(c) or isRunonPunctuation(c) or isMiscPunctuation(c)
 
